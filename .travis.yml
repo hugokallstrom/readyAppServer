@@ -1,3 +1,8 @@
 language: node_js
 node_js:
-    - "0.10"
+- '0.10'
+deploy:
+  provider: heroku
+  api_key:
+    secure: UW0cxcMICF0b4sTw+MzbayhSXW+1gOqKvJCEnd/sF60eREo9ulMYxk7nTZwiA5KXR54KWpBmT0DvG+eifchI+Yl2u+weWv+FX1KTh4PCUkKmx9FtrddfYa+DHieFEz831MV6Hh/UagSgv66NzYc4Eu258oqh0MhBz/SeokoNoGc=
+  app: readyappserver
