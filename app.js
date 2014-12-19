@@ -10,6 +10,6 @@ server.use(restify.bodyParser());
 server.get('/user/:userId', user.getUser);
 server.post('/user/:userId', user.register);
 
-server.listen(8080, function() {
+server.listen(process.env.PORT || 8080, function() {
 	console.log('%s listening at %s', server.name, server.url);
 });
