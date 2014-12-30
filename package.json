@@ -6,5 +6,9 @@
 	"restify": "*",
 	"mongodb": "*",
 	"mongoose": "*"
+  }, 
+  "scripts": {
+	"test": "mocha"
   }
 }
+
