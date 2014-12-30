@@ -3,7 +3,7 @@ var expect = require('chai').expect
 var database = require('../lib/database')
 var jsonBodies = require('./jsonTestBodies')
 
-describe('User', function () {
+describe('/user', function () {
 	before(function (done) {
 		var testUser = jsonBodies.createTestRegisterRequest('Johan', 'Edeljung', 'johanede@gmail.com', 'johan123');
 		database.addUserToDB(testUser, function (err, user) {

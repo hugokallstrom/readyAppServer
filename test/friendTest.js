@@ -3,14 +3,14 @@ var expect = require('chai').expect
 var database = require('../lib/database')
 var jsonBodies = require('./jsonTestBodies')
 
-describe('Friend', function () {
-	before(function (done) {
+describe('/friends', function () {
+	beforeEach(function (done) {
 		addTestUsers(function () {
 			done();
 		});
 	});
 
-	after(function (done) {
+	afterEach(function (done) {
 		database.clearUsers();
 		done();
 	}); 
@@ -23,18 +23,16 @@ describe('Friend', function () {
 			});
 		});
 
-		it('should append added friend to users friendlist', function (done) {
+		it('should append added friend to users friend list', function (done) {
 			database.addFriend('johan123', 'macke', function (err, friend) {
-				database.findUser('johan123', function (err, obj) {
-					user = obj.toObject();
-					expect('macke').to.equal(user.friendList[1].friendId);
+				database.findUser('johan123', function (err, user) {
+					expect('macke').to.equal(user.friendList[0].friendId);
 				});
 			});
 
 			database.addFriend('johan123', 'asterb', function (err, friend) {
-				database.findUser('johan123', function (err, obj) {
-					user = obj.toObject();
-					expect('asterb').to.equal(user.friendList[2].friendId);
+				database.findUser('johan123', function (err, user) {
+					expect('asterb').to.equal(user.friendList[1].friendId);
 					done();
 				});
 			});
@@ -42,13 +40,37 @@ describe('Friend', function () {
 
 		it('should return "no user found"-error if user does not exist', function (done) {
 			database.addFriend('johan123', 'noUser', function (err, obj) {
-				console.log(err)
 				expect(err).to.equal('Not found')
 				done();
 			});
 		});
 	});
 
+	describe('#removeFriend()', function () {
+		it('should return the friend if successfully removed', function (done) {
+			database.addFriend('johan123', 'macke', function (err, friend) {
+				database.removeFriend('johan123', 'macke', function (err, friend) {
+					expect(friend).to.equal('macke');
+					done();
+				});	
+			});
+		});
+
+		it('should remove the friend from the users friend list', function (done) {
+			database.addFriend('johan123', 'macke', function (err, friend) {	
+				database.findUser('johan123', function (err, user) {
+					expect('macke').to.equal(user.friendList[0].friendId);
+					database.removeFriend('johan123', 'macke', function (err, friend) {
+						database.findUser('johan123', function (err, user) {
+							user = user.toObject();
+							expect(user.friendList).to.deep.equal([]);
+							done();
+						});	
+					});
+				});
+			});
+		});
+	});
 });
 
 function addTestUsers (callback) {
