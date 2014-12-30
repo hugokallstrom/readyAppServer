@@ -8,7 +8,8 @@
 	"mongoose": "*",
 	"mocha": "*",
 	"chai": "*",
-	"newrelic": "*"
+	"newrelic": "*",
+	"restify-oauth2": "*"
   }, 
   "scripts": {
 	"test": "mocha"
