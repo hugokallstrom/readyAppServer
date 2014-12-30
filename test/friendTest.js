@@ -41,13 +41,12 @@ describe('Friend', function () {
 		});
 
 		it('should return "no user found"-error if user does not exist', function (done) {
-			database.addFriend('johan123', 'noUser' function (err, obj) {
+			database.addFriend('johan123', 'noUser', function (err, obj) {
+				console.log(err)
 				expect(err).to.equal('Not found')
+				done();
 			});
-
-			done();
 		});
-
 	});
 
 });
