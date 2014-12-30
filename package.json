@@ -5,7 +5,8 @@
   "dependencies": {
 	"restify": "*",
 	"mongodb": "*",
-	"mongoose": "*"
+	"mongoose": "*",
+	"mocha": "*"
   }, 
   "scripts": {
 	"test": "mocha"
