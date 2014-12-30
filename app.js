@@ -1,7 +1,7 @@
 var restify = require('restify');
 var user = require('./lib/user.js');
 var friends = require('./lib/friends.js');
-require('newrelic');
+
 
 var server = restify.createServer({
 	name: 'ReadyApp',
