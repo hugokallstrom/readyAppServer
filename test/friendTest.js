@@ -5,6 +5,7 @@ var jsonBodies = require('./jsonTestBodies')
 
 describe('/friends', function () {
 	beforeEach(function (done) {
+		database.clearUsers();
 		addTestUsers(function () {
 			done();
 		});
@@ -26,13 +27,13 @@ describe('/friends', function () {
 		it('should append added friend to users friend list', function (done) {
 			database.addFriend('johan123', 'macke', function (err, friend) {
 				database.findUser('johan123', function (err, user) {
-					expect('macke').to.equal(user.friendList[0].friendId);
+					expect('macke').to.equal(user.friendList[0].userId);
 				});
 			});
 
 			database.addFriend('johan123', 'asterb', function (err, friend) {
 				database.findUser('johan123', function (err, user) {
-					expect('asterb').to.equal(user.friendList[1].friendId);
+					expect('asterb').to.equal(user.friendList[1].userId);
 					done();
 				});
 			});
@@ -59,7 +60,7 @@ describe('/friends', function () {
 		it('should remove the friend from the users friend list', function (done) {
 			database.addFriend('johan123', 'macke', function (err, friend) {	
 				database.findUser('johan123', function (err, user) {
-					expect('macke').to.equal(user.friendList[0].friendId);
+					expect('macke').to.equal(user.friendList[0].userId);
 					database.removeFriend('johan123', 'macke', function (err, friend) {
 						database.findUser('johan123', function (err, user) {
 							user = user.toObject();
