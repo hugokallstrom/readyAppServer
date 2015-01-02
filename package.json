@@ -1,6 +1,6 @@
 {
   "name": "server",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "dependencies": {
 	"restify": "*",
@@ -9,7 +9,9 @@
 	"mocha": "*",
 	"chai": "*",
 	"newrelic": "*",
-	"restify-oauth2": "*"
+	"restify-oauth2": "*",
+	"passport": "*",
+	"passport-http": "*"
   }, 
   "scripts": {
 	"test": "mocha"
