@@ -11,7 +11,8 @@
 	"newrelic": "*",
 	"restify-oauth2": "*",
 	"passport": "*",
-	"passport-http": "*"
+	"passport-http": "*",
+	"bcrypt-nodejs": "*"
   }, 
   "scripts": {
 	"test": "mocha"
