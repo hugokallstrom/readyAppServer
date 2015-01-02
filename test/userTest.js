@@ -39,7 +39,6 @@ describe('/user', function () {
 				expect(user.lastName).to.equal('Edeljung');
 				expect(user.email).to.equal('johanede@gmail.com');
 				expect(user.userId).to.equal('johan123');
-				expect(user.password).to.equal('secret');
 			});
 			done();
 		});
@@ -71,7 +70,6 @@ describe('/user', function () {
 				expect(user.lastName).to.equal('Sköld');
 				expect(user.email).to.equal('mack@gmail.com');
 				expect(user.userId).to.equal('macke');
-				expect(user.password).to.equal('secret');
 			});
 			done();
 		});

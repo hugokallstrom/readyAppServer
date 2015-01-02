@@ -1,8 +1,7 @@
 var restify = require('restify');
-var restifyOauth2 = require('restify-oauth2');
 var user = require('./lib/user.js');
 var friends = require('./lib/friends.js');
-var auth = require('./lib/auth.js');
+var passport = require('passport');
 
 var server = restify.createServer({
 	name: 'ReadyApp',
