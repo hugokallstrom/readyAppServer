@@ -2,6 +2,7 @@ var restify = require('restify');
 var user = require('./lib/user.js');
 var friends = require('./lib/friends.js');
 var passport = require('passport');
+var auth = require('./lib/auth.js');
 
 var server = restify.createServer({
 	name: 'ReadyApp',
@@ -12,12 +13,12 @@ server.use(restify.bodyParser());
 server.use(restify.authorizationParser());
 
 // Routes
-server.post('/login', user.authenticate);
-server.get('/user/:userId', user.getUser);
-server.post('/user/:userId', user.register);
+server.post('/login', auth.isAuthenticated, user.authenticate);
+server.get('/user/:userId', auth.isAuthenticated, user.getUser);
+server.post('/user/:userId', auth.isAuthenticated, user.register);
 server.post('/register', user.register);
-server.get('/friends/:userId', friends.getFriendList)
-server.post('/friends/:userId/:friendId', friends.addFriend)
+server.get('/friends/:userId', auth.isAuthenticated, friends.getFriendList)
+server.post('/friends/:userId/:friendId', auth.isAuthenticated, friends.addFriend)
 
 
 
