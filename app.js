@@ -13,7 +13,7 @@ server.use(passport.initialize());
 server.use(restify.bodyParser());
 server.use(restify.authorizationParser());
 
-server.post('/login', auth.isAuthenticated, user.authenticate);
+server.post('/login/:userId', auth.isAuthenticated, user.authenticate);
 server.get('/user/:userId', auth.isAuthenticated, user.getUser);
 server.post('/user/:userId', auth.isAuthenticated, user.register);
 server.post('/register', user.register);
