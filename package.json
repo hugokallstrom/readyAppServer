@@ -8,11 +8,10 @@
 	"mongoose": "*",
 	"mocha": "*",
 	"chai": "*",
-	"newrelic": "*",
-	"restify-oauth2": "*",
 	"passport": "*",
 	"passport-http": "*",
-	"bcrypt-nodejs": "*"
+	"bcrypt-nodejs": "*",
+	"validator": "*"
   }, 
   "scripts": {
 	"test": "mocha"
