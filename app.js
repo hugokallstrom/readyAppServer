@@ -23,6 +23,16 @@ server.post('/ip/:userId', auth.isAuthenticated, ip.addIp);
 server.get('/ip/:userId', auth.isAuthenticated, ip.getIp);
 server.get('/search/:userId', auth.isAuthenticated, user.search);
 
-server.listen(process.env.PORT || 8080, function() {
-	console.log('%s listening at %s', server.name, server.url);
-});
+
+
+exports.start = function () {
+	server.listen(process.env.PORT || 8080, function() {
+		console.log('%s listening at %s', server.name, server.url);
+	});
+}
+
+exports.close = function () {
+	server.close();
+}
+
+this.start();

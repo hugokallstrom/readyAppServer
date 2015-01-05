@@ -12,7 +12,8 @@
 	"passport-http": "*",
 	"bcrypt-nodejs": "*",
 	"validator": "*",
-	"dateformat": "*"
+	"dateformat": "*",
+	"supertest": "*"
   }, 
   "scripts": {
 	"test": "mocha"
