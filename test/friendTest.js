@@ -3,7 +3,7 @@ var expect = require('chai').expect
 var database = require('../lib/database')
 var jsonBodies = require('./jsonTestBodies')
 
-describe('/friends', function () {
+describe('Database friends tests', function () {
 	beforeEach(function (done) {
 		database.clearUsers();
 		addTestUsers(function () {
