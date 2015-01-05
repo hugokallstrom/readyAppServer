@@ -19,11 +19,10 @@ server.post('/user/:userId', auth.isAuthenticated, user.register);
 server.post('/register', user.register);
 server.get('/friends/:userId', auth.isAuthenticated, friends.getFriendList);
 server.post('/friends/:userId/:friendId', auth.isAuthenticated, friends.addFriend);
+server.del('friends/:userId/:friendId', auth.isAuthenticated, friends.deleteFriend);
 server.post('/ip/:userId', auth.isAuthenticated, ip.addIp);
 server.get('/ip/:userId', auth.isAuthenticated, ip.getIp);
 server.get('/search/:userId', auth.isAuthenticated, user.search);
-
-
 
 exports.start = function () {
 	server.listen(process.env.PORT || 8080, function() {

@@ -35,7 +35,7 @@ describe('http tests', function () {
 			});
 		});
 
-		it('should return unauthorized code if incorrect username/password', function (done) {
+		it('should return 401 code if incorrect username/password', function (done) {
 			unauthorizedTest('/login/johan123', function () {
 				done();
 			});
@@ -75,7 +75,7 @@ describe('http tests', function () {
 	});
 
 	describe('POST /register', function () {
-		it('should return OK code if the registration was successful', function (done) {
+		it('should return 200 code if the registration was successful', function (done) {
 			var registerRequest = '{ "name": "Johan", "lastName": "Edeljung", "email": "johanede@mail.com", "userId": "NewUser", "password": "secret" }'
 			request(url)
 			.post('/register')
@@ -102,7 +102,7 @@ describe('http tests', function () {
 	});
 
 	describe('POST /friends/{userId}/{friendId}', function () {
-		it('should return OK code and the added friends userId', function (done) {
+		it('should return 200 code and the added friends userId', function (done) {
 			request(url)
 			.post('/friends/johan123/macke123')
 			.set('Authorization', 'Basic am9oYW4xMjM6c2VjcmV0')
@@ -146,6 +146,19 @@ describe('http tests', function () {
 			.end(function (err, res) {
 				if (err) console.log(err)
 				expect(res.body.error).to.equal("Not found");
+				done();
+			});
+		});
+	});
+
+	describe('DELETE /friends/{userId}/{friendId}', function () {
+		it('should return 204 code', function (done) {
+			request(url)
+			.del('/friends/johan123/macke123')
+			.set('Authorization', 'Basic am9oYW4xMjM6c2VjcmV0')
+			.expect(204)
+			.end(function (err, res) {
+				if (err) console.log(err)
 				done();
 			});
 		});
