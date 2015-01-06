@@ -102,14 +102,15 @@ describe('http tests', function () {
 	});
 
 	describe('POST /friends/{userId}/{friendId}', function () {
-		it('should return 200 code and the added friends userId', function (done) {
+		it('should return 200 code and the updated user information', function (done) {
 			request(url)
 			.post('/friends/johan123/macke123')
 			.set('Authorization', 'Basic am9oYW4xMjM6c2VjcmV0')
 			.expect(200)
 			.end(function (err, res) {
 				if (err) console.log(err)
-				expect(res.body.userId).to.equal("macke123");
+				expect(res.body.friendList[0].userId).to.equal("macke123");
+				expect(res.body.userId).to.equal("johan123");
 				done();
 			});
 		});
@@ -152,11 +153,26 @@ describe('http tests', function () {
 	});
 
 	describe('DELETE /friends/{userId}/{friendId}', function () {
-		it('should return 204 code', function (done) {
+		it('should return 204 code and the updated user information', function (done) {
 			request(url)
 			.del('/friends/johan123/macke123')
 			.set('Authorization', 'Basic am9oYW4xMjM6c2VjcmV0')
-			.expect(204)
+			.expect(200)
+			.end(function (err, res) {
+				if (err) console.log(err)
+				expect(res.body.friendList.length).to.equal(0);
+				done();
+			});
+		});
+	});
+
+	describe('POST /ip/{userId}', function () {
+		it('should receive 201 code when successful', function (done) {
+			request(url)
+			.post('/ip/johan123')
+			.set('Authorization', 'Basic am9oYW4xMjM6c2VjcmV0')
+			.send('{"ip": "192.168.0.1"}')
+			.expect(201)
 			.end(function (err, res) {
 				if (err) console.log(err)
 				done();

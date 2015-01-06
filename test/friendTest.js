@@ -47,10 +47,10 @@ describe('Database friends tests', function () {
 		});
 	});
 
-	describe('#removeFriend()', function () {
+	describe('#deleteFriend()', function () {
 		it('should return the friend if successfully removed', function (done) {
 			database.addFriend('johan123', 'macke', function (err, friend) {
-				database.removeFriend('johan123', 'macke', function (err, friend) {
+				database.deleteFriend('johan123', 'macke', function (err, friend) {
 					expect(friend).to.equal('macke');
 					done();
 				});	
@@ -61,7 +61,7 @@ describe('Database friends tests', function () {
 			database.addFriend('johan123', 'macke', function (err, friend) {	
 				database.findUser('johan123', function (err, user) {
 					expect('macke').to.equal(user.friendList[0].userId);
-					database.removeFriend('johan123', 'macke', function (err, friend) {
+					database.deleteFriend('johan123', 'macke', function (err, friend) {
 						database.findUser('johan123', function (err, user) {
 							user = user.toObject();
 							expect(user.friendList).to.deep.equal([]);
